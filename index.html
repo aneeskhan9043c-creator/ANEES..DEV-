@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anees | Digital Growth for Dentists</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
       /* Clean, pristine, clinical white theme */
       :root {
@@ -19,6 +19,11 @@
         --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
         --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px; /* Match sticky navbar height */
       }
 
       * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -69,13 +74,11 @@
       }
       nav.scrolled { border-bottom: 1px solid var(--border); }
       .nav-container { display: flex; justify-content: space-between; align-items: center; height: 80px; }
-      .logo { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; }
+      .logo { font-family: 'Caveat', cursive; font-weight: 700; font-size: 2.25rem; letter-spacing: -0.5px; color: var(--text-main); }
       .logo span { color: var(--accent); }
-      .nav-links { display: none; gap: 32px; font-weight: 500; color: var(--text-muted); }
+      .nav-links { display: flex; gap: 16px; font-weight: 650; font-size: 0.95rem; color: var(--text-muted); }
       .nav-links a:hover { color: var(--accent); }
-      @media (min-width: 768px) { .nav-links { display: flex; align-items: center; } }
-      .mobile-menu-btn { display: block; border: none; background: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
-      @media (min-width: 768px) { .mobile-menu-btn { display: none; } }
+      @media (min-width: 768px) { .nav-links { gap: 32px; font-size: 1rem; } }
 
       /* Hero Section */
       .hero { 
@@ -101,11 +104,13 @@
       }
       .hero-grid { display: grid; grid-template-columns: 1fr; gap: 56px; align-items: center; }
       @media (min-width: 992px) { .hero-grid { grid-template-columns: 60% 40%; } }
-      .hero-content h1 { font-size: 3.25rem; font-weight: 800; line-height: 1.1; margin-bottom: 24px; color: #FFFFFF; letter-spacing: -0.02em; }
+      .hero-content h1 { font-size: 2.15rem; font-weight: 800; line-height: 1.15; margin-bottom: 24px; color: #FFFFFF; letter-spacing: -0.02em; }
+      @media (min-width: 480px) { .hero-content h1 { font-size: 2.65rem; } }
       @media (min-width: 768px) { .hero-content h1 { font-size: 4.5rem; } }
       .hero-content p { font-size: 1.125rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 40px; max-width: 540px; }
       
       .hero-image-container { position: relative; }
+      .hero-image-container:empty { display: none; }
       .hero-image-wrapper {
         position: relative; border-radius: 16px; overflow: hidden;
         aspect-ratio: 4/5; box-shadow: var(--shadow-lg); background: var(--bg-light);
@@ -134,15 +139,20 @@
       }
 
       /* Section Styles */
-      .section-header { text-align: center; margin-bottom: 56px; }
-      .section-header h2 { font-size: 2.5rem; margin-bottom: 16px; color: var(--text-main); }
-      .section-header p { font-size: 1.125rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+      .section-header { text-align: center; margin-bottom: 40px; }
+      @media (min-width: 768px) { .section-header { margin-bottom: 56px; } }
+      .section-header h2 { font-size: 1.85rem; margin-bottom: 12px; color: var(--text-main); line-height: 1.25; }
+      @media (min-width: 480px) { .section-header h2 { font-size: 2.22rem; } }
+      @media (min-width: 768px) { .section-header h2 { font-size: 2.5rem; } }
+      .section-header p { font-size: 0.95rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; padding: 0 16px; }
+      @media (min-width: 768px) { .section-header p { font-size: 1.125rem; } }
 
-      .card { background: var(--bg-light); padding: 32px; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s ease, border-color 0.3s ease; }
+      .card { background: var(--bg-light); padding: 24px; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s ease, border-color 0.3s ease; }
+      @media (min-width: 768px) { .card { padding: 32px; } }
       .card:hover { transform: translateY(-4px); border-color: var(--accent); }
 
       /* About Section */
-      .about { background-color: #12131a; color: #e3e1ec; padding-top: 80px; padding-bottom: 80px; }
+      .about { background-color: #0c0c0e; color: #e3e1ec; padding: 0; margin: 0; overflow: hidden; }
       .about-card {
         background: rgba(9, 9, 11, 0.6);
         backdrop-filter: blur(12px);
@@ -216,37 +226,30 @@
       .spotlight { position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; background: radial-gradient(circle 800px at 0% 0%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 80%); transform: translate(-72%, -62%) scale(0.5); animation: spotlight 2s ease .75s 1 forwards; }
       @keyframes spotlight { 0% { opacity: 0; transform: translate(-72%, -62%) scale(0.5); } 100% { opacity: 1; transform: translate(-50%,-40%) scale(1); } }
 
-      /* Services Section */
-      .services-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
-      @media (min-width: 768px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
-      @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
-      .service-icon { font-size: 2.5rem; margin-bottom: 20px; display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(6, 182, 212, 0.1); color: var(--accent); border-radius: 12px; }
-      .service-title { font-size: 1.25rem; margin-bottom: 12px; color: var(--text-main); font-weight: 600; }
-      .service-desc { font-size: 0.95rem; color: var(--text-muted); }
-
-      /* Process Section */
-      .process { background-color: var(--bg-light); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-      .process-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
-      @media (min-width: 768px) { .process-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; } }
-      .step-number { font-size: 3.5rem; font-weight: 800; color: rgba(0, 0, 0, 0.05); margin-bottom: 16px; line-height: 1; }
-      .step-title { font-size: 1.25rem; margin-bottom: 12px; color: var(--text-main); font-weight: 600; }
-      .step-desc { font-size: 0.95rem; color: var(--text-muted); }
+      /* Services Section Styles */
+      .services {
+        background-color: #0c0c0e;
+        color: #e3e1ec;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 100px;
+        padding-bottom: 110px;
+        overflow: hidden;
+      }
+      .services .section-header h2 {
+        color: #ffffff;
+        font-size: 2.75rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+      }
+      .services .section-header p {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 1.125rem;
+      }
 
       /* Why Me Section */
       .why-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
       @media (min-width: 768px) { .why-grid { grid-template-columns: repeat(3, 1fr); } }
-
-      /* Portfolio */
-      .portfolio { background-color: var(--bg-light); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-      .portfolio-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
-      @media (min-width: 768px) { .portfolio-grid { grid-template-columns: repeat(3, 1fr); } }
-      .portfolio-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s, border-color 0.3s; }
-      .portfolio-card:hover { transform: translateY(-4px); border-color: var(--accent); }
-      .portfolio-image { height: 220px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-weight: 500;}
-      .portfolio-content { padding: 24px; flex-grow: 1; display: flex; flex-direction: column;}
-      .portfolio-content h3 { font-size: 1.25rem; margin-bottom: 8px; color: var(--text-main); font-weight: 600; }
-      .portfolio-content p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px; flex-grow: 1; }
-      .portfolio-link { color: var(--accent); font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
 
       /* CTA Section */
       .cta { text-align: center; }
@@ -258,8 +261,8 @@
       .cta-option:hover { border-color: var(--accent); }
       .cta-trust { display: block; font-size: 0.875rem; color: var(--text-muted); margin-top: 16px; }
 
-      /* Footer */
-      footer { padding: 32px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.875rem; }
+      /* Footer container reset */
+      #react-footer { display: block; width: 100%; }
 
       /* Animations */
       .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; will-change: opacity, transform; }
@@ -275,14 +278,11 @@
   <!-- Navbar -->
   <nav id="navbar">
     <div class="container nav-container">
-      <a href="#" class="logo">Anees<span>.</span></a>
+      <a href="#" class="logo">Anees<span>.dev</span></a>
       <div class="nav-links">
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#process">Process</a>
-        <a href="#portfolio">Work</a>
       </div>
-      <button class="mobile-menu-btn">☰</button>
     </div>
   </nav>
 
@@ -292,10 +292,7 @@
       <div class="hero-content">
         <h1>Your Business Deserves a Website That Actually Works.</h1>
         <p>I build high-trust, lightning-fast web identities and automated booking systems exclusively for solo dental practitioners. Stop losing local patients to outdated online profiles.</p>
-        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-          <a href="#portfolio" class="btn btn-primary">See My Work</a>
-          <a href="#contact" class="btn btn-outline">Let's Talk</a>
-        </div>
+        <div id="react-hero-button" style="margin-top: 32px;"></div>
       </div>
       <div class="hero-image-container">
       </div>
@@ -304,34 +301,7 @@
 
   <!-- About Section -->
   <section id="about" class="about">
-    <div class="container">
-      <div class="about-card fade-in">
-        <div class="spotlight-container">
-          <div class="spotlight"></div>
-        </div>
-        <div class="about-content-wrapper">
-          <div class="about-badge">
-            <span class="about-badge-dot"></span>
-            Freelance Web Developer
-          </div>
-          <h2 class="about-heading">BIG ABOUT<br>ME</h2>
-          <p class="about-text">
-            I'm Anees — a freelance web developer building clean, conversion-focused websites for local businesses.
-          </p>
-          <p class="about-text-secondary">
-            I specialize in service-based industries: clinics, consultants, travel agencies, and institutes. Every site I build is mobile-first, fast-loading, and designed to turn visitors into paying clients. I work directly with business owners — no agencies, no middlemen.
-          </p>
-          <div>
-            <a href="#contact" class="about-btn">Work With Me</a>
-          </div>
-        </div>
-        <div class="about-visual-wrapper" id="robot-spline-container" style="pointer-events: none;">
-          <div id="spline-fallback" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%); border-radius: 50%;">
-            <!-- High quality static fallback/placeholder if WebGL fails -->
-            <img src="https://images.unsplash.com/photo-1485550409059-9afb054cada4?q=80&w=800&auto=format&fit=crop" alt="Abstract 3D Shape" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px; opacity: 0.5; filter: grayscale(100%);">
-          </div>
-        </div>
-      </div>
+    <div id="react-about" class="w-full">
     </div>
   </section>
 
@@ -342,69 +312,7 @@
         <h2>What I Build</h2>
         <p>Every project is tailored. No templates, no shortcuts.</p>
       </div>
-      <div class="services-grid">
-        <div class="card fade-in delay-1">
-          <div class="service-icon">🏥</div>
-          <h3 class="service-title">Clinic & Healthcare Sites</h3>
-          <p class="service-desc">Patient-friendly, trust-building websites for doctors, dentists, and aesthetic clinics.</p>
-        </div>
-        <div class="card fade-in delay-2">
-          <div class="service-icon">🏢</div>
-          <h3 class="service-title">Business Landing Pages</h3>
-          <p class="service-desc">Single-page, high-conversion sites for consultants, agencies, and service providers.</p>
-        </div>
-        <div class="card fade-in delay-3">
-          <div class="service-icon">✈️</div>
-          <h3 class="service-title">Travel & Umrah Agency Sites</h3>
-          <p class="service-desc">Professional booking and inquiry pages for travel businesses.</p>
-        </div>
-        <div class="card fade-in delay-1">
-          <div class="service-icon">🎓</div>
-          <h3 class="service-title">Institute & Academy Sites</h3>
-          <p class="service-desc">Enrollment-focused sites for training institutes and coaching centers.</p>
-        </div>
-        <div class="card fade-in delay-2">
-          <div class="service-icon">💼</div>
-          <h3 class="service-title">Freelancer Portfolios</h3>
-          <p class="service-desc">Clean, modern portfolios that highlight your work and get you hired.</p>
-        </div>
-        <div class="card fade-in delay-3">
-          <div class="service-icon">🔧</div>
-          <h3 class="service-title">Website Maintenance</h3>
-          <p class="service-desc">Ongoing updates, fixes, and rock-solid support for existing sites.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Process Section -->
-  <section id="process" class="process">
-    <div class="container">
-      <div class="section-header fade-in">
-        <h2>How I Work</h2>
-        <p>Simple process. Zero confusion.</p>
-      </div>
-      <div class="process-grid">
-        <div class="process-step fade-in delay-1">
-          <div class="step-number">1</div>
-          <h3 class="step-title">Discovery</h3>
-          <p class="step-desc">You tell me about your business, goals, and audience. I ask the right questions.</p>
-        </div>
-        <div class="process-step fade-in delay-2">
-          <div class="step-number">2</div>
-          <h3 class="step-title">Design</h3>
-          <p class="step-desc">I build a mobile-first design tailored to your brand and customers.</p>
-        </div>
-        <div class="process-step fade-in delay-3">
-          <div class="step-number">3</div>
-          <h3 class="step-title">Development</h3>
-          <p class="step-desc">Clean code, fast loading, fully responsive — built and thoroughly tested.</p>
-        </div>
-        <div class="process-step fade-in delay-4">
-          <div class="step-number">4</div>
-          <h3 class="step-title">Delivery</h3>
-          <p class="step-desc">Your site goes live. I hand over everything and stay available for support.</p>
-        </div>
+      <div id="react-services" class="w-full">
       </div>
     </div>
   </section>
@@ -432,42 +340,6 @@
     </div>
   </section>
 
-  <!-- Portfolio Section -->
-  <section id="portfolio" class="portfolio">
-    <div class="container">
-      <div class="section-header fade-in">
-        <h2>My Work</h2>
-        <p>Real websites. Real businesses.</p>
-      </div>
-      <div class="portfolio-grid">
-        <div class="portfolio-card fade-in delay-1">
-          <div class="portfolio-image">Project Screenshot</div>
-          <div class="portfolio-content">
-            <h3>Project 1</h3>
-            <p>Live website for a modern healthcare clinic.</p>
-            <a href="#" class="portfolio-link">View Live Site &rarr;</a>
-          </div>
-        </div>
-        <div class="portfolio-card fade-in delay-2">
-          <div class="portfolio-image">Project Screenshot</div>
-          <div class="portfolio-content">
-            <h3>Project 2</h3>
-            <p>High-conversion landing page for a business consultancy.</p>
-            <a href="#" class="portfolio-link">View Live Site &rarr;</a>
-          </div>
-        </div>
-        <div class="portfolio-card fade-in delay-3">
-          <div class="portfolio-image">Project Screenshot</div>
-          <div class="portfolio-content">
-            <h3>Project 3</h3>
-            <p>Responsive booking platform for a travel agency.</p>
-            <a href="#" class="portfolio-link">View Live Site &rarr;</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- CTA Section -->
   <section id="contact" class="cta">
     <div class="container">
@@ -475,22 +347,15 @@
         <h2>Let's Build Your Website</h2>
         <p>Tell me about your business and I'll tell you exactly what you need.</p>
       </div>
-      <div class="cta-content fade-in delay-1">
-        <div class="cta-options">
-          <a href="#" class="cta-option">📱 WhatsApp</a>
-          <a href="#" class="cta-option">📧 Email</a>
-        </div>
-        <a href="#" class="btn btn-primary" style="font-size: 1.125rem; padding: 18px 36px;">Start a Project</a>
+      <div class="cta-content fade-in delay-1 max-w-2xl mx-auto">
+        <div id="react-contact-cards" class="w-full"></div>
+        <div id="react-cta-button" style="margin-top: 24px; display: inline-flex; justify-content: center; width: 100%;"></div>
         <span class="cta-trust">Response within 24 hours. No commitment required.</span>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      <div>© 2025 Anees. Freelance Web Developer.</div>
-    </div>
-  </footer>
+  <div id="react-footer"></div>
 
   <script>
     // Sticky Navbar
@@ -498,17 +363,6 @@
     window.addEventListener('scroll', () => {
       if (window.scrollY > 20) navbar.classList.add('scrolled');
       else navbar.classList.remove('scrolled');
-    });
-
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if(target) {
-          window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
-        }
-      });
     });
 
     // Fade-in animations
@@ -523,66 +377,7 @@
     }, observerOptions);
     
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    
-    // Lazy Load Spline 3D Viewer
-    const loadSpline = () => {
-      const container = document.getElementById('robot-spline-container');
-      if (!container) return;
-      
-      let hasWebGL = false;
-      try {
-        const canvas = document.createElement('canvas');
-        hasWebGL = !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
-      } catch(e) { }
-
-      if (hasWebGL) {
-        const splineObserver = new IntersectionObserver((entries) => {
-          if (entries[0].isIntersecting) {
-            splineObserver.disconnect();
-            
-            // Remove fallback image smoothly
-            const fallback = document.getElementById('spline-fallback');
-            if (fallback) fallback.style.opacity = '0';
-            setTimeout(() => {
-                if (fallback) fallback.remove();
-            }, 500);
-
-            // Wait for idle before injecting heavy spline viewer
-            const initViewer = () => {
-              // Add script
-              const script = document.createElement('script');
-              script.type = 'module';
-              script.src = 'https://unpkg.com/@splinetool/viewer@1.0.51/build/spline-viewer.js';
-              document.head.appendChild(script);
-              
-              // Add element
-              const viewer = document.createElement('spline-viewer');
-              viewer.setAttribute('url', 'https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode');
-              viewer.style.opacity = '0';
-              viewer.style.transition = 'opacity 1s ease-in-out';
-              container.appendChild(viewer);
-
-              // Fade in 
-              setTimeout(() => { viewer.style.opacity = '1'; }, 100);
-            };
-
-            if (window.requestIdleCallback) {
-                window.requestIdleCallback(initViewer, { timeout: 2000 });
-            } else {
-                setTimeout(initViewer, 200);
-            }
-          }
-        }, { rootMargin: '200px' });
-        
-        splineObserver.observe(container);
-      }
-    };
-
-    if (document.readyState === 'complete') {
-        loadSpline();
-    } else {
-        window.addEventListener('load', loadSpline);
-    }
   </script>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

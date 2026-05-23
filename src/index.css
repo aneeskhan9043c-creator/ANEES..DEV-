@@ -1,1 +1,150 @@
 @import "tailwindcss";
+
+/* Glass Button Styles */
+.all-unset {
+  all: unset;
+  box-sizing: border-box;
+}
+
+.glass-button-wrap {
+  position: relative;
+  display: inline-flex;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-button {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-radius: 9999px;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.15), 
+    inset 0 -1px 1px rgba(0, 0, 0, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.25), 
+    inset 0 -1px 1px rgba(0, 0, 0, 0.15),
+    0 6px 20px rgba(255, 255, 255, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1.5px);
+}
+
+.glass-button:active {
+  transform: translateY(1px);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.1), 
+    0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.glass-button-shadow {
+  position: absolute;
+  inset: -1px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 75%);
+  opacity: 0;
+  filter: blur(10px);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.glass-button-wrap:hover .glass-button-shadow {
+  opacity: 1;
+}
+
+/* Wet Glass Button (Glossy, Translucent 3D Glass Light Style) */
+.glass-button-wet-wrap {
+  position: relative;
+  display: inline-flex;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-button-wet {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.4) 100%);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  
+  /* Double outer light beveled line to simulate thick wet glass edge */
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  color: #111111; /* Sleek high contrast dark text */
+  font-weight: 600;
+  border-radius: 9999px;
+  
+  /* Advanced multi-layer shadow system for 3D depth */
+  box-shadow: 
+    /* Specular glare at the very top edge */
+    inset 0 3px 6px rgba(255, 255, 255, 1),
+    /* Soft shading inside at the bottom */
+    inset 0 -2px 6px rgba(0, 0, 0, 0.05),
+    /* Delicate inner outline glow */
+    inset 0 0 10px rgba(255, 255, 255, 0.5),
+    /* Smooth physical drop shadow */
+    0 10px 24px -4px rgba(0, 0, 0, 0.12),
+    0 4px 10px -2px rgba(0, 0, 0, 0.05);
+
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 0.5px 0.5px rgba(255, 255, 255, 0.4);
+}
+
+.glass-button-wet:hover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.55) 100%);
+  border-color: rgba(255, 255, 255, 0.95);
+  color: #000000;
+  
+  box-shadow: 
+    /* Extra glossy top highlight */
+    inset 0 4px 8px rgba(255, 255, 255, 1),
+    /* Stronger inner outline definition */
+    inset 0 0 14px rgba(255, 255, 255, 0.75),
+    inset 0 -1px 4px rgba(0, 0, 0, 0.03),
+    /* Deeper elegant volumetric drop shadow */
+    0 16px 32px -5px rgba(0, 0, 0, 0.16),
+    0 6px 16px -3px rgba(0, 0, 0, 0.08);
+    
+  transform: translateY(-2px);
+}
+
+.glass-button-wet:active {
+  transform: translateY(0.5px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%);
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.8),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.05),
+    0 4px 10px -2px rgba(0, 0, 0, 0.1);
+}
+
+.glass-button-wet-shadow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 70%);
+  opacity: 0;
+  filter: blur(12px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.glass-button-wet-wrap:hover .glass-button-wet-shadow {
+  opacity: 1;
+}
+
+.glass-button-text {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
